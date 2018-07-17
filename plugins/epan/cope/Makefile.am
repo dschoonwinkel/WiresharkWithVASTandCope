@@ -19,10 +19,15 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 
 include $(top_srcdir)/Makefile.am.inc
-include ../Makefile.am.inc
+include $(top_srcdir)/plugins/epan/Makefile.am.inc
 
 # the name of the plugin
 PLUGIN_NAME = cope
+
+PLUGIN_VERSION = 1.1.0
+
+BUILT_SOURCES = \
+	plugin.c
 
 # Non-generated sources to be scanned for registration routines
 NONGENERATED_REGISTER_C_FILES = \
@@ -39,13 +44,14 @@ CLEAN_HEADER_FILES = \
 HEADER_FILES = \
 	$(CLEAN_HEADER_FILES)
 
-plugin_LTLIBRARIES = cope.la
+epan_plugin_LTLIBRARIES = cope.la
 
 cope_la_SOURCES = \
-	plugin.c \
-	moduleinfo.h \
 	$(SRC_FILES)	\
 	$(HEADER_FILES)
+
+nodist_cope_la_SOURCES = \
+	plugin.c
 
 cope_la_CPPFLAGS = $(AM_CPPFLAGS) $(PLUGIN_CPPFLAGS)
 
@@ -53,14 +59,8 @@ cope_la_CFLAGS = $(AM_CFLAGS) $(PLUGIN_CFLAGS)
 
 cope_la_LDFLAGS = $(PLUGIN_LDFLAGS)
 
-CLEANFILES = \
-	cope \
-	*~
-
-MAINTAINERCLEANFILES = \
-	Makefile.in	\
+DISTCLEANFILES = \
 	plugin.c
 
 EXTRA_DIST = \
-	plugin.rc.in		\
 	CMakeLists.txt
