@@ -1,0 +1,226 @@
+Wireshark 2.6.1 Release Notes
+
+ What is Wireshark?
+
+  Wireshark is the world’s most popular network protocol analyzer. It is
+  used for troubleshooting, analysis, development and education.
+
+ What’s New
+
+    • The Windows installers now ship with Qt 5.9.5. Previously they
+      shipped with Qt 5.9.4.
+
+  Bug Fixes
+
+   The following vulnerabilities have been fixed:
+
+     • ws-sa2018-25
+
+     • The LDSS dissector could crash. (ws-bug14615)
+
+     • ws-sa2018-26
+
+     • The IEEE 1905.1a dissector could crash. (ws-bug14647)
+
+     • ws-sa2018-27
+
+     • The RTCP dissector could crash. (ws-bug14673)
+
+     • ws-sa2018-28
+
+     • Multiple dissectors could consume excessive memory. (ws-bug14678)
+
+     • ws-sa2018-29
+
+     • The DNS dissector could crash. (ws-bug14681)
+
+     • ws-sa2018-30
+
+     • The GSM A DTAP dissector could crash. (ws-bug14688)
+
+     • ws-sa2018-31
+
+     • The Q.931 dissector could crash. (ws-bug14689)
+
+     • ws-sa2018-32
+
+     • The IEEE 802.11 dissector could crash. (ws-bug14686)
+
+     • ws-sa2018-33
+
+     • Multiple dissectors could crash. (ws-bug14703)
+
+   The following bugs have been fixed:
+
+     • Qt GUI does not snap to exactly half of screen in Windows. (Bug
+       13516[1])
+
+     • Segmentation fault when switching profiles. (Bug 14316[2])
+
+     • QUIC dissector produces incorrect packet numbers (wrong-endian).
+       (Bug 14462[3])
+
+     • Wrong default file format chosen in when saving a capture with
+       comments added if the original format doesn’t support comments.
+       (Bug 14601[4])
+
+     • Lua: Error during loading [AppData directory]:1: bad argument #1
+       to dofile (dofile: file does not exist). (Bug 14619[5])
+
+     • Crash when selecting text. (Bug 14620[6])
+
+     • ui/macosx directory missing from source release tarball. (Bug
+       14627[7])
+
+     • Wireshark 2.9.0 snapshot crashes/segfaults on Windows when
+       launched with -k or -i. (Bug 14632[8])
+
+     • "Copy as printable text" isn’t copying non-alphanumeric
+       characters. (Bug 14633[9])
+
+     • File missing from release tarball. (Bug 14634[10])
+
+     • NEWS is out of date and does not display properly in Notepad.
+       (Bug 14636[11])
+
+     • l16mono.so is installed in the wrong place. (Bug 14638[12])
+
+     • Remove: HACK to support UHD’s weird header offset on data
+       packets. (Bug 14641[13])
+
+     • WinSparkle 0.5.6 is out of date and is buggy. (Bug 14642[14])
+
+     • Unable to create or open VOIP captures. (Bug 14648[15])
+
+     • RTMPT: incorrect dissection of multiple RTMP packets within a
+       single TCP packet. (Bug 14650[16])
+
+     • Endpoints dialog displays invalid GeoIP information due to
+       incorrect byte order. (Bug 14656[17])
+
+     • Qt: Crash in ShowPacketBytesDialog(). (Bug 14658[18])
+
+     • Statistics → Resolved addresses show IP addresses without domain.
+       (Bug 14667[19])
+
+     • Erroneous MAC-LTE Dissection for Sidelink Shared Channel Packets.
+       (Bug 14669[20])
+
+     • Files missing from docbook CMake file. (Bug 14676[21])
+
+     • Wireshark hangs when opening certain files if it’s been
+       configured to use the new GeoIP databases. (Bug 14701[22])
+
+   The “Open”, “Save”, and other file dialogs should now be shown at the
+   correct size on HiDPI Windows systems.
+
+  New and Updated Features
+
+   There are no new features in this release.
+
+  New Protocol Support
+
+   There are no new protocols in this release.
+
+  Updated Protocol Support
+
+   BATADV, BT LE LL, CoAP, DNS, DTLS, GSM A DTAP, GSM A GM, GTP, GTPv2,
+   IEEE 1905.1a, IEEE 802.11, LDSS, LwM2M-TLV, MAC LTE, NAS EPS, Q.931,
+   RTCP, RTMPT, SDP, TCP, and VITA 49
+
+  New and Updated Capture File Support
+
+   3GPP TS 32.423 Trace and Android Logcat
+
+  New and Updated Capture Interfaces support
+
+   There is no new or updated capture file support in this release.
+
+ Getting Wireshark
+
+  Wireshark source code and installation packages are available from
+  https://www.wireshark.org/download.html[23].
+
+  Vendor-supplied Packages
+
+   Most Linux and Unix vendors supply their own Wireshark packages. You
+   can usually install or upgrade Wireshark using the package management
+   system specific to that platform. A list of third-party packages can
+   be found on the download page[24] on the Wireshark web site.
+
+ File Locations
+
+  Wireshark and TShark look in several different locations for
+  preference files, plugins, SNMP MIBS, and RADIUS dictionaries. These
+  locations vary from platform to platform. You can use About→Folders to
+  find the default locations on your system.
+
+ Known Problems
+
+  The BER dissector might infinitely loop. (Bug 1516[25])
+
+  Capture filters aren’t applied when capturing from named pipes. (Bug
+  1814[26])
+
+  Filtering tshark captures with read filters (-R) no longer works. (Bug
+  2234[27])
+
+  Application crash when changing real-time option. (Bug 4035[28])
+
+  Wireshark and TShark will display incorrect delta times in some cases.
+  (Bug 4985[29])
+
+  Wireshark should let you work with multiple capture files. (Bug
+  10488[30])
+
+ Getting Help
+
+  Community support is available on Wireshark’s Q&A site[31] and on the
+  wireshark-users mailing list. Subscription information and archives
+  for all of Wireshark’s mailing lists can be found on the web site[32].
+
+  Official Wireshark training and certification are available from
+  Wireshark University[33].
+
+ Frequently Asked Questions
+
+  A complete FAQ is available on the Wireshark web site[34].
+
+  Last updated 2018-05-22 17:40:45 UTC
+
+ References
+
+   1. https://bugs.wireshark.org/bugzilla/show_bug.cgi?id=13516
+   2. https://bugs.wireshark.org/bugzilla/show_bug.cgi?id=14316
+   3. https://bugs.wireshark.org/bugzilla/show_bug.cgi?id=14462
+   4. https://bugs.wireshark.org/bugzilla/show_bug.cgi?id=14601
+   5. https://bugs.wireshark.org/bugzilla/show_bug.cgi?id=14619
+   6. https://bugs.wireshark.org/bugzilla/show_bug.cgi?id=14620
+   7. https://bugs.wireshark.org/bugzilla/show_bug.cgi?id=14627
+   8. https://bugs.wireshark.org/bugzilla/show_bug.cgi?id=14632
+   9. https://bugs.wireshark.org/bugzilla/show_bug.cgi?id=14633
+  10. https://bugs.wireshark.org/bugzilla/show_bug.cgi?id=14634
+  11. https://bugs.wireshark.org/bugzilla/show_bug.cgi?id=14636
+  12. https://bugs.wireshark.org/bugzilla/show_bug.cgi?id=14638
+  13. https://bugs.wireshark.org/bugzilla/show_bug.cgi?id=14641
+  14. https://bugs.wireshark.org/bugzilla/show_bug.cgi?id=14642
+  15. https://bugs.wireshark.org/bugzilla/show_bug.cgi?id=14648
+  16. https://bugs.wireshark.org/bugzilla/show_bug.cgi?id=14650
+  17. https://bugs.wireshark.org/bugzilla/show_bug.cgi?id=14656
+  18. https://bugs.wireshark.org/bugzilla/show_bug.cgi?id=14658
+  19. https://bugs.wireshark.org/bugzilla/show_bug.cgi?id=14667
+  20. https://bugs.wireshark.org/bugzilla/show_bug.cgi?id=14669
+  21. https://bugs.wireshark.org/bugzilla/show_bug.cgi?id=14676
+  22. https://bugs.wireshark.org/bugzilla/show_bug.cgi?id=14701
+  23. https://www.wireshark.org/download.html
+  24. https://www.wireshark.org/download.html#thirdparty
+  25. https://bugs.wireshark.org/bugzilla/show_bug.cgi?id=1516
+  26. https://bugs.wireshark.org/bugzilla/show_bug.cgi?id=1814
+  27. https://bugs.wireshark.org/bugzilla/show_bug.cgi?id=2234
+  28. https://bugs.wireshark.org/bugzilla/show_bug.cgi?id=4035
+  29. https://bugs.wireshark.org/bugzilla/show_bug.cgi?id=4985
+  30. https://bugs.wireshark.org/bugzilla/show_bug.cgi?id=10488
+  31. https://ask.wireshark.org/
+  32. https://www.wireshark.org/lists/
+  33. http://www.wiresharktraining.com/
+  34. https://www.wireshark.org/faq.html
