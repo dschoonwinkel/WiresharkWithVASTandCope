@@ -9,12 +9,15 @@
 # Add a list of your custom plugins SRC dir here including the path
 #
 
-set(CUSTOM_PLUGIN_SRC_DIR plugins/epan/cope)
+set(CUSTOM_PLUGIN_SRC_DIR 
+	plugins/epan/cope
+)
+
 #set(CUSTOM_PLUGIN_SRC_DIR
 #	private_plugins/foo
 # or
 #	plugins/epan/foo
-)
+#)
 
 #
 # Editor modelines  -  http://www.wireshark.org/tools/modelines.html
