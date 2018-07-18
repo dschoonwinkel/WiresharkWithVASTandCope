@@ -1,15 +1,28 @@
 # Prerequisites
 *.d
 
+
 # Compiled Object files
 *.slo
 *.lo
 *.o
 *.obj
 
+# Object files
+*.o
+*.ko
+*.obj
+*.elf
+
+# Linker output
+*.ilk
+*.map
+*.exp
+
 # Precompiled Headers
 *.gch
 *.pch
+
 
 # Compiled Dynamic libraries
 *.so
@@ -40,3 +53,22 @@
 *install_manifest.txt
 *compile_commands.json
 *CTestTestfile.cmake
+
+*.i*86
+*.x86_64
+*.hex
+
+# Debug files
+*.dSYM/
+*.su
+*.idb
+*.pdb
+
+# Kernel Module Compile Results
+*.mod*
+*.cmd
+.tmp_versions/
+modules.order
+Module.symvers
+Mkfile.old
+dkms.conf
