@@ -230,3 +230,18 @@ Gerald Combs <gerald@wireshark.org>
 Gilbert Ramirez <gram@alumni.rice.edu>
 
 Guy Harris <guy@alum.mit.edu>
+
+
+Compiling from Source code:
+
+https://www.wireshark.org/docs/wsug_html_chunked/ChBuildInstallUnixBuild.html
+
+Outside my_wireshark directory:
+mkdir build
+cd build
+
+cmake ../my_wireshark
+make
+sudo make install
+
+sudo wireshark
