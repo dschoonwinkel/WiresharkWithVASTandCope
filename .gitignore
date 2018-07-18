@@ -1,7 +1,6 @@
 # Prerequisites
 *.d
 
-
 # Compiled Object files
 *.slo
 *.lo
@@ -23,7 +22,6 @@
 *.gch
 *.pch
 
-
 # Compiled Dynamic libraries
 *.so
 *.dylib
@@ -38,6 +36,19 @@
 *.la
 *.a
 *.lib
+
+# Libraries
+*.lib
+*.a
+*.la
+*.lo
+
+# Shared objects (inc. Windows DLLs)
+*.dll
+*.so
+*.so.*
+*.dylib
+
 
 # Executables
 *.exe
