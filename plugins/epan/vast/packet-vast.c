@@ -26,6 +26,9 @@
 #define VAST_END_FLAG 0x02
 #define VAST_PRIORITY_FLAG 0x04
 
+#define VAST_START_BITS 0x0A
+#define VAST_END_BITS 0x05
+
 static int proto_vast = -1;
 
 static int hf_vast_header = -1;
@@ -38,7 +41,7 @@ static int hf_vast_msggroup = -1;
 static int hf_vast_priority = -1;
 static int hf_vast_reliable = -1;
 static int hf_vast_num_targets = -1;
-static int hf_target_spacer = -1;
+// static int hf_target_spacer = -1;
 static gint ett_targets = -1;
 static int hf_vast_target = -1;
 static int hf_vast_data = -1;
@@ -140,8 +143,27 @@ unsigned int extract_endbits(unsigned int header_int) {
     return endbits;
 }
 
+static gboolean test_vast(packet_info *pinfo _U_, tvbuff_t *tvb, int offset _U_, void *data _U_)
+{
 
-static int
+    guint32 header_int = -1;
+
+    if (tvb_captured_length(tvb) < 4)
+        return FALSE;
+
+    header_int = tvb_get_guint32(tvb, offset, ENC_LITTLE_ENDIAN);
+
+    if (extract_startbits(header_int) != VAST_START_BITS)
+        return FALSE;
+
+    if (extract_endbits(header_int) != VAST_END_BITS)
+        return FALSE;
+
+    return TRUE;
+
+}
+
+static gboolean
 dissect_vast(tvbuff_t *tvb, packet_info *pinfo, proto_tree *tree _U_, void *data _U_)
 {
     gint offset = 0;
@@ -163,6 +185,10 @@ dissect_vast(tvbuff_t *tvb, packet_info *pinfo, proto_tree *tree _U_, void *data
     //     &hf_vast_endflag,
     //     &hf_vast_priorityflag
     // };
+
+    // If this is not a VAST packet, stop dissecting
+    if (!test_vast(pinfo, tvb, offset, data))
+        return FALSE;
 
     col_set_str(pinfo->cinfo, COL_PROTOCOL, "VAST");
     /* Clear out stuff in the info column */
@@ -209,8 +235,8 @@ dissect_vast(tvbuff_t *tvb, packet_info *pinfo, proto_tree *tree _U_, void *data
 
         targets_tree = proto_item_add_subtree(ti, ett_targets);
 
-        int i = 0;
-        for (i = 0; i < num_targets; i++) {
+        int j = 0;
+        for (j = 0; j < num_targets; j++) {
             proto_tree_add_item(targets_tree, hf_vast_target, tvb, offset, 8, ENC_BIG_ENDIAN);
             offset += 8;
         }    
@@ -327,8 +353,15 @@ proto_reg_handoff_vast(void)
 {
     static dissector_handle_t vast_handle;
 
-    vast_handle = create_dissector_handle(dissect_vast, proto_vast);
-    dissector_add_uint("udp.port", VAST_PORT, vast_handle);
+    
+    heur_dissector_add("tcp", dissect_vast, "VAST over TCP",
+     "VAST_tcp", proto_vast, HEURISTIC_ENABLE);
+    heur_dissector_add("udp", dissect_vast, "VAST over UDP",
+     "VAST_udp", proto_vast, HEURISTIC_ENABLE);
+
+    // vast_handle = create_dissector_handle(dissect_vast, proto_vast);
+    // dissector_add_uint("udp.port", VAST_PORT, vast_handle);
+    // dissector_add_uint("tcp.port", VAST_PORT, vast_handle);
 }
 
 
